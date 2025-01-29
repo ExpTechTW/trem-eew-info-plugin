@@ -1,0 +1,16 @@
+{
+  "name": "eew-info",
+  "version": "1.0.0",
+  "description": {
+    "zh_tw": "顯示 eew 相關資訊",
+    "zh-Hant": "顯示 eew 相關資訊"
+  },
+  "author": ["yayacat"],
+  "dependencies": {
+    "trem": ">=3.1.0",
+    "logger": ">=1.0.0",
+    "config": ">=1.0.3"
+  },
+  "resources": ["AGPL-3.0"],
+  "link": "https://github.com/ExpTechTW/trem-eew-info-plugin"
+}

@@ -1,0 +1,24 @@
+.station-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.station-id {
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+.station-info {
+    color: #ff4444;
+}
+
+.scrollable-list {
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.scrollable-list li {
+    color: #ff4444;
+}

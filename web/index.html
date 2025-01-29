@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TREM EEW 監控面板</title>
+    <link rel="stylesheet" href="./css/color.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/stationList.css" />
+    <link rel="stylesheet" href="./css/toast.css" />
+    <script src="./js/index.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div id="app">
+            <div class="server-box">
+                <div class="server-body">
+                    <div class="server-container">
+                        <div>
+                            <span class="server-title">接收時間</span>
+                            <span class="server-subtitle" id="eew_get_time">0000-00-00 00:00:00</span>
+                        </div>
+                        <div>
+                            <span class="server-title">本機時間</span>
+                            <span class="server-subtitle" id="local_time">0000-00-00 00:00:00</span>
+                        </div>
+                        <div>
+                            <span class="server-title">延遲時間</span>
+                            <span class="server-subtitle" id="lag_time">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="server-content">
+                    <div class="container">
+                        <div class="info-box" draggable="true">
+                            <span class="info-box-title">TREM EEW 發震時間</span>
+                            <span class="intensity-null" id="eew_time">0000-00-00 00:00:00</span>
+                        </div>
+                        <div class="info-box" draggable="true">
+                            <span class="info-box-title">TREM EEW 預估震度</span>
+                            <span class="intensity-null" id="core_eew_estimate_taipei"></span>
+                        </div>
+                        <div class="info-box" draggable="true">
+                            <span class="info-box-title">TREM EEW 預估/實際</span>
+                            <div id="wave-1"></div>
+                        </div>
+                        <div class="info-box" draggable="true">
+                            <span class="info-box-title">TREM EEW Log</span>
+                            <ul class="scrollable-list" id="core_eew_taipei">
+                            </ul>
+                        </div>
+                        <div class="info-box" draggable="true" style="margin-top: 10px;flex: 1;width: 475px; height: 194px;">
+                            <span class="info-box-title">警報地域</span>
+                            <span class="info-box-body" style="font-weight: 900;font-size: 35px;"
+                                id="alert-area"></span>
+                            <div class="cancel" id="cancel">緊急地震速報 取消</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
