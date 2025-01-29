@@ -222,9 +222,13 @@ ipcRenderer.on("showEew", (event, ans) => {
     if (eew_timer) clearTimeout(eew_timer);
 
     if (data.time) {
-        eew_time_num = data.time;
-        eew_get_time.textContent = formatTime(eew_time_num);
+      eew_time_num = data.time;
+      eew_get_time.textContent = formatTime(eew_time_num);
+    } else {
+      eew_time_num = Date.now();
+      eew_get_time.textContent = formatTime(eew_time_num);
     }
+
     if (data.eq) eew_time.textContent = formatTime(data.eq.time);
 
     if (data.id != eew_id) {
