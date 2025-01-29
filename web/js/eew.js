@@ -106,7 +106,7 @@ let area_alert_text = "";
 ipcRenderer.on("play_mode", (event, ans) => {
   if (ans == 0) {
     play_mode_name = "HTTP";
-    if (play_mode_num == 2) eew_timer_fun();
+    if (play_mode_num == 2) eew_timer_fun(true);
   } else if (ans == 1) {
     play_mode_name = "websocket";
   } else if (ans == 2) {
@@ -181,7 +181,9 @@ function eew_area_pga(lat, lon, depth, mag) {
     return json;
 }
 
-function eew_timer_fun() {
+function eew_timer_fun(stop = false) {
+    let time = 60_000;
+    if (stop) time = 0;
     if (eew_timer) clearTimeout(eew_timer);
     eew_timer = null;
     eew_timer = setTimeout(() => {
@@ -209,7 +211,7 @@ function eew_timer_fun() {
         eew_rts = 0;
         eew_alert = 0;
         area_alert_text = "";
-    }, 60_000);
+    }, time);
 }
 
 ipcRenderer.on("showEew", (event, ans) => {
@@ -370,7 +372,7 @@ ipcRenderer.on("showEew", (event, ans) => {
         ],
     });
 
-    if (play_mode_num == 2) eew_timer_fun();
+    if (play_mode_num == 2) eew_timer_fun(true);
 });
 
 ipcRenderer.on("EewEnd", (event, ans) => {
