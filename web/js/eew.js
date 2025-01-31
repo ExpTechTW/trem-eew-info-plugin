@@ -44,40 +44,46 @@ const constant = {
 const charts = [
 	echarts.init(document.getElementById("wave-1"), null, { height: 100, width: 600, renderer: "svg" })
 ];
-for (let i = 0, j = charts.length; i < j; i++) {
-  charts[i].setOption({
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: { type: 'cross' }
-    },
-    xAxis: {
-      type      : "value",
-      splitLine : {
+
+charts_init();
+
+function charts_init() {
+  for (let i = 0, j = charts.length; i < j; i++) {
+    charts[i].setOption({
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'cross' }
+      },
+      xAxis: {
+        type      : "value",
+        splitLine : {
+          show: false,
+        },
         show: false,
       },
-      show: false,
-    },
-    yAxis: {
-      type      : "value",
-      animation : false,
-      splitLine : {
-        show: false,
+      yAxis: {
+        type      : "value",
+        animation : false,
+        splitLine : {
+          show: false,
+        },
+        axisLabel: {
+          interval : 1,
+          fontSize : 10,
+        },
+        axisLine: {
+          show: false,
+        },
       },
-      axisLabel: {
-        interval : 1,
-        fontSize : 10,
-      },
-      axisLine: {
-        show: false,
-      },
-    },
-    grid: {
-      top    : 16,
-      right  : 0,
-      bottom : 0,
-    }
-  });
+      grid: {
+        top    : 16,
+        right  : 0,
+        bottom : 0,
+      }
+    });
+  }
 }
+
 let chartdata = [
 	[],
 	[],
@@ -85,6 +91,7 @@ let chartdata = [
 ];
 
 let eew_time_num = 0;
+let eew_eq_time_num = 0;
 let lag = 0;
 
 let work_station = {};
@@ -106,11 +113,13 @@ let area_alert_text = "";
 ipcRenderer.on("play_mode", (event, ans) => {
   if (ans == 0) {
     play_mode_name = "HTTP";
-    if (play_mode_num == 2) eew_timer_fun(true);
+    if (play_mode_num != 0) eew_timer_fun(true);
   } else if (ans == 1) {
     play_mode_name = "websocket";
+    if (play_mode_num != 1) eew_timer_fun(true);
   } else if (ans == 2) {
     play_mode_name = "HTTP (重播)";
+    if (play_mode_num != 2) eew_timer_fun(true);
   }
   play_mode_num = ans;
 });
@@ -183,7 +192,7 @@ function eew_area_pga(lat, lon, depth, mag) {
 
 function eew_timer_fun(stop = false) {
     let time = 60_000;
-    if (stop) time = 0;
+    if (stop) time = 1_000;
     if (eew_timer) clearTimeout(eew_timer);
     eew_timer = null;
     eew_timer = setTimeout(() => {
@@ -194,40 +203,10 @@ function eew_timer_fun(stop = false) {
         core_alert_area.innerHTML = "";
         cancel.style.display = "none";
         charts[0].clear();
-        charts[0].setOption({
-          tooltip: {
-            trigger: 'axis',
-            axisPointer: { type: 'cross' }
-          },
-          xAxis: {
-            type      : "value",
-            splitLine : {
-              show: false,
-            },
-            show: false,
-          },
-          yAxis: {
-            type      : "value",
-            animation : false,
-            splitLine : {
-              show: false,
-            },
-            axisLabel: {
-              interval : 1,
-              fontSize : 10,
-            },
-            axisLine: {
-              show: false,
-            },
-          },
-          grid: {
-            top    : 16,
-            right  : 0,
-            bottom : 0,
-          }
-        });
+        charts_init();
         eew_timer = null;
         eew_time_num = 0;
+        eew_eq_time_num = 0;
         lag = 0;
         chartdata = [
             [],
@@ -261,7 +240,10 @@ ipcRenderer.on("showEew", (event, ans) => {
       eew_get_time.textContent = formatTime(eew_time_num);
     }
 
-    if (data.eq) eew_time.textContent = formatTime(data.eq.time);
+    if (data.eq) {
+      eew_eq_time_num = data.eq.time;
+      eew_time.textContent = formatTime(data.eq.time);
+    }
 
     if (data.id != eew_id) {
         eew_id = data.id;
@@ -407,8 +389,6 @@ ipcRenderer.on("showEew", (event, ans) => {
           },
         ],
     });
-
-    if (play_mode_num == 2) eew_timer_fun(true);
 });
 
 ipcRenderer.on("EewEnd", (event, ans) => {
@@ -517,7 +497,7 @@ function formatTime(timestamp) {
 
 setInterval(() => {
     local_time.textContent = formatTime(Date.now());
-    if (eew_time_num != 0 && play_mode_num != 2) lag = Date.now() - eew_time_num;
+    if (eew_time_num != 0 && eew_eq_time_num != 0) lag = eew_time_num - eew_eq_time_num;
 }, 500);
 
 function formatTimeDifference(milliseconds) {
