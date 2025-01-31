@@ -194,6 +194,38 @@ function eew_timer_fun(stop = false) {
         core_alert_area.innerHTML = "";
         cancel.style.display = "none";
         charts[0].clear();
+        charts[0].setOption({
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'cross' }
+          },
+          xAxis: {
+            type      : "value",
+            splitLine : {
+              show: false,
+            },
+            show: false,
+          },
+          yAxis: {
+            type      : "value",
+            animation : false,
+            splitLine : {
+              show: false,
+            },
+            axisLabel: {
+              interval : 1,
+              fontSize : 10,
+            },
+            axisLine: {
+              show: false,
+            },
+          },
+          grid: {
+            top    : 16,
+            right  : 0,
+            bottom : 0,
+          }
+        });
         eew_timer = null;
         eew_time_num = 0;
         lag = 0;

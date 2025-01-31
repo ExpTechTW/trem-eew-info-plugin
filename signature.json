@@ -1,5 +1,5 @@
 {
-  "timestamp": 1738138777855,
+  "timestamp": 1738204192520,
   "version": "1.0.7",
   "fileHashes": {
     "config.yml": "73a6eb7e322e82b108b1ca18ca159a430a36c219a501847ca6504f424c55baf7",
@@ -32,12 +32,12 @@
     "web/css/toast.css": "f2555beb5e21ba66a99d6ce244c4c68df11fc3302ff139f88a21ad912e9bef92",
     "web/index.html": "cd6a85399a6e838968314a1ebd13036e6222266400d7284fb90d065f6f639f16",
     "web/js/box.js": "89c611e48c3417a503be6a482f4cf4e6d154fb8e5de7bf6a2565c955949bb740",
-    "web/js/eew.js": "bd0278daf91450c835d19de721e65cdcf93f168f7661314e1efb6258ee67334e",
+    "web/js/eew.js": "684972bbbec31371fdaa2ad83cd30052310d3a685bf12bbafc909c352df71798",
     "web/js/index.js": "bd59fc99807f656a6aac6c1c438f77f2eb15b6444e0936104e2602e5a3f2a875",
     "web/js/nav.js": "9f7c1e0226b8b6cffd3d46d791166651e8c2c1e7081a8c8cf4911cac54b6eb1e",
     "web/resource/js/echarts.js": "4ff1bfa8176d508c2c654960111ae00044fe891358c0c7b692a92698357011b0",
     "web/resource/region_v2.json": "1e6837a1d099e866a327c521ee539fa29b3e4454d4d3cfe2046a74b6baaa0652"
   },
-  "signature": "kXMbdEQJaUWpqrKxCOpYuVOEeb4IOxSghUNcQI3pj1pz6pvVAiWCu1NhS4Rq8Fs296Jk8Ja/CBcykDC/oi4ll12kG1L0k/NA/lduOPF8GictmvpyUxCzbtNvjEaEJyjqV+RQ14DuM0fn6Ics7TM8OlRgpfx0m7virWFpHbf9Va9bHnEHW0WChLIFkUPne/GEI5jNlta4XoIeonaV7HPBRdOZa6qxpfzUfOObhIAmMr+SxE9aG0RmAunzNzAbwCwzOXG5tcOqzfd2XZf3LzV8ok5/n51/VswRgh7p9qVUeltsMpdoumDTur6IpyTiEsO8jFdzOmkaQ/TYoS1S+8uBzA==",
+  "signature": "R0F7X9p4HfvOH0Wm1S9/Ru6686aj6BAwVfbeRV2K2nCs88m+I0iP0lCDEKJkJxskUPRFVZRi1/VXJZ1mnlWqWqUKtsJwaN7ksDrXyjuSGFTyO2LWXs8SE5ZuNaNhKx8J5fhrlycSydLRK7mTxua5Yee2Tf+c1m8jDXrogfXCBd/xFp1gcJBMG97v5ZjqiFXBJO862h3BV417GzQsnbKJnqzNgaOBSnrS/j5uvTROAQ/13/fN23ShCZvtBl3mbIBDfESz8RmLH4NrnioU4Wn2kir1hJsQWfm+9bYBNR4BJ0OwbeYBHqmqfN/L64ZcAnhInlrhUeMTf4uQKx33N3Ex5Q==",
   "keyId": "official"
 }
