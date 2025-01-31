@@ -83,7 +83,7 @@ class Plugin {
         channel: "play_mode",
         payload: TREM.variable.play_mode,
       });
-    }, 0);
+    }, 1_000);
 
     this.init();
     this.addClickEvent(info);

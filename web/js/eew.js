@@ -90,10 +90,6 @@ let chartdata = [
 	[]
 ];
 
-let eew_time_num = 0;
-let eew_eq_time_num = 0;
-let lag = 0;
-
 let work_station = {};
 let station_temp = {};
 let off_station = {};
@@ -205,9 +201,6 @@ function eew_timer_fun(stop = false) {
         charts[0].clear();
         charts_init();
         eew_timer = null;
-        eew_time_num = 0;
-        eew_eq_time_num = 0;
-        lag = 0;
         chartdata = [
             [],
             [],
@@ -233,15 +226,12 @@ ipcRenderer.on("showEew", (event, ans) => {
     if (eew_timer) clearTimeout(eew_timer);
 
     if (data.time) {
-      eew_time_num = data.time;
-      eew_get_time.textContent = formatTime(eew_time_num);
+      eew_get_time.textContent = formatTime(data.time);
     } else {
-      eew_time_num = Date.now();
-      eew_get_time.textContent = formatTime(eew_time_num);
+      eew_get_time.textContent = formatTime(Date.now());
     }
 
     if (data.eq) {
-      eew_eq_time_num = data.eq.time;
       eew_time.textContent = formatTime(data.eq.time);
     }
 
@@ -497,7 +487,6 @@ function formatTime(timestamp) {
 
 setInterval(() => {
     local_time.textContent = formatTime(Date.now());
-    if (eew_time_num != 0 && eew_eq_time_num != 0) lag = eew_time_num - eew_eq_time_num;
 }, 500);
 
 function formatTimeDifference(milliseconds) {
