@@ -6,7 +6,6 @@ const eew_get_time = document.getElementById("eew_get_time");
 const eew_time = document.getElementById("eew_time");
 eew_time.textContent = "暫無生效中的 緊急地震速報 時間";
 const local_time = document.getElementById("local_time");
-const lag_time = document.getElementById("lag_time");
 const core_eew_taipei = document.getElementById("core_eew_taipei");
 const core_eew_estimate_taipei = document.getElementById("core_eew_estimate_taipei");
 core_eew_estimate_taipei.className = "intensity-null";
@@ -513,8 +512,6 @@ function formatTimeDifference(milliseconds) {
 }
 
 setInterval(() => {
-    lag_time.textContent = `${formatTimeDifference(lag)} (${lag} ms)`;
-
     const now = Date.now();
     const flashElements = document.getElementsByClassName("flash");
     for (const item of flashElements) item.style.visibility = "visible";
