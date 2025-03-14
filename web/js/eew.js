@@ -119,6 +119,12 @@ ipcRenderer.on("play_mode", (event, ans) => {
   play_mode_num = ans;
 });
 
+let time_now = 0;
+
+ipcRenderer.on("now", (event, ans) => {
+  time_now = ans;
+});
+
 let rts_max = {};
 
 ipcRenderer.on("DataRts", (event, ans) => {
@@ -227,7 +233,7 @@ ipcRenderer.on("showEew", (event, ans) => {
     if (data.time) {
       eew_get_time.textContent = formatTime(data.time);
     } else {
-      eew_get_time.textContent = formatTime(Date.now());
+      eew_get_time.textContent = formatTime(time_now);
     }
 
     if (data.eq) {
@@ -307,7 +313,7 @@ ipcRenderer.on("showEew", (event, ans) => {
     }
 
     for (const city of alert_city)
-        if (!alert_area[city]) alert_area[city] = Date.now();
+        if (!alert_area[city]) alert_area[city] = time_now;
 
     for (const city of Object.keys(alert_area))
         if (!alert_city.includes(city)) delete alert_area[city];
@@ -485,7 +491,7 @@ function formatTime(timestamp) {
 }
 
 setInterval(() => {
-    local_time.textContent = formatTime(Date.now());
+    local_time.textContent = formatTime(time_now);
 }, 500);
 
 function formatTimeDifference(milliseconds) {
@@ -512,7 +518,7 @@ function formatTimeDifference(milliseconds) {
 }
 
 setInterval(() => {
-    const now = Date.now();
+    const now = time_now;
     const flashElements = document.getElementsByClassName("flash");
     for (const item of flashElements) item.style.visibility = "visible";
     setTimeout(() => {
