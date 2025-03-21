@@ -73,6 +73,10 @@ function charts_init() {
         axisLine: {
           show: false,
         },
+        axisTick: {
+          customValues: [0],
+          // show: false,
+        },
       },
       grid: {
         top    : 16,
@@ -342,7 +346,7 @@ ipcRenderer.on("showEew", (event, ans) => {
     for (const obj of chart_intensity_list) {
         if (obj.i <= 0) break;
         chartdata[0].push(Math.floor(obj.d));
-        chartdata[1].push(obj.i);
+        chartdata[1].push(obj.i.toFixed(1));
         const int = rts_max[obj.id];
         chartdata[2].push((!int || int < 0) ? 0 : int);
         count++;
@@ -350,38 +354,39 @@ ipcRenderer.on("showEew", (event, ans) => {
     }
 
     charts[0].setOption({
-        animation : false,
+        animation: false,
         xAxis: {
-            data  : chartdata[0],
+          data: chartdata[0],
+          inverse: true,
         },
         series: [
-          {
-            name  : '預估',
-            type  : "line",
-            showSymbol : false,
-            data  : chartdata[1],
-            label : {
-                backgroundColor : "green",
-                borderColor     : "black",
+            {
+                name: '預估',
+                type: "line",
+                showSymbol: false,
+                data: chartdata[1],
+                label: {
+                    backgroundColor: "green",
+                    borderColor: "black",
+                },
+                lineStyle: {
+                    normal: {
+                        color: 'black',
+                        width: 4,
+                        type: 'dashed'
+                    }
+                }
             },
-            lineStyle : {
-              normal : {
-                color : 'black',
-                width : 4,
-                type  : 'dashed'
-              }
-            }
-          },
-          {
-            name  : '實際',
-            type  : "bar",
-            showSymbol : false,
-            data  : chartdata[2],
-            label : {
-                backgroundColor : "#c4c6d0",
-                borderColor     : "white",
-            }
-          },
+            {
+                name: '實際',
+                type: "bar",
+                showSymbol: false,
+                data: chartdata[2],
+                label: {
+                    backgroundColor: "#c4c6d0",
+                    borderColor: "white",
+                }
+            },
         ],
     });
 });
